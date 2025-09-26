@@ -6,19 +6,19 @@ phases:
       python: 3.11
   build:
     commands:
-      # Step 1: Create a clean directory for packaging
+      # These are your existing commands
       - mkdir -p deployment-package
-      # Step 2: Install all dependencies directly into that directory
       - pip install -r requirements.txt -t ./deployment-package
-      # Step 3: Copy your main application code into the directory
       - cp main.py ./deployment-package/
-      # Step 4: Go into the package directory
       - cd deployment-package
-      # Step 5: Zip up the contents
       - zip -r ../deployment_package.zip .
       - cd ..
+  post_build:
+    commands:
+      # This is the NEW command to update the Lambda function
+      - aws lambda update-function-code --function-name weather-app-backend --s3-bucket weather-app-lambda-code-aryaman-7z9x3y2a --s3-key deployment_package.zip
 
 artifacts:
   files:
-    # This tells CodeBuild which file is the final result
+    # This section is no longer strictly needed but is good practice
     - deployment_package.zip
