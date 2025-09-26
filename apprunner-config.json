@@ -1,0 +1,19 @@
+{
+    "ServiceName": "weather-app-backend",
+    "SourceConfiguration": {
+        "AuthenticationConfiguration": {
+            "ConnectionArn": "arn:aws:codeconnections:ap-south-1:664418955458:connection/ebcd2e16-99a8-4a99-98df-73a849a86ad0"
+        },
+        "CodeRepository": {
+            "RepositoryUrl": "https://github.com/aryaman2603/weather-app-backend-aws.git",
+            "SourceCodeVersion": {
+                "Type": "BRANCH",
+                "Value": "main"
+            },
+            "CodeConfiguration": {
+                "ConfigurationSource": "REPOSITORY"
+            }
+        },
+        "AutoDeploymentsEnabled": true
+    }
+}

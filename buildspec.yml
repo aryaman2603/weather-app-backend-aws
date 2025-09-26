@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+  build:
+    commands:
+      # Step 1: Create a clean directory for packaging
+      - mkdir -p deployment-package
+      # Step 2: Install all dependencies directly into that directory
+      - pip install -r requirements.txt -t ./deployment-package
+      # Step 3: Copy your main application code into the directory
+      - cp main.py ./deployment-package/
+      # Step 4: Go into the package directory
+      - cd deployment-package
+      # Step 5: Zip up the contents
+      - zip -r ../deployment_package.zip .
+      - cd ..
+
+artifacts:
+  files:
+    # This tells CodeBuild which file is the final result
+    - deployment_package.zip
